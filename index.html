@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forex Trading Journal</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        header { background: #007BFF; color: white; padding: 10px; text-align: center; }
+        main { padding: 20px; }
+        section { margin-bottom: 20px; }
+        .dashboard { display: flex; justify-content: space-between; }
+        .tracker, .compliance { flex: 1; margin: 0 10px; }
+        .rules { background: #f2f2f2; padding: 10px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Forex Trading Journal</h1>
+    </header>
+    <main>
+        <section class="dashboard">
+            <h2>Dashboard</h2>
+            <!-- Content for dashboard -->
+        </section>
+        <section class="tracker">
+            <h2>Progress Tracker</h2>
+            <!-- Content for progress tracking (e.g., charts, stats) -->
+        </section>
+        <section class="rules">
+            <h2>Rule Enforcement</h2>
+            <!-- Content for rule enforcement (e.g., list of rules) -->
+        </section>
+        <section class="compliance">
+            <h2>Compliance Monitoring</h2>
+            <!-- Content for compliance monitoring (e.g., alerts, statistics) -->
+        </section>
+        <section class="crud">
+            <h2>CRUD Operations</h2>
+            <form id="crud-form">
+                <input type="text" id="item-name" placeholder="Item Name" required />
+                <button type="submit">Add Item</button>
+            </form>
+            <ul id="item-list"></ul>
+            <script>
+                const form = document.getElementById('crud-form');
+                const itemList = document.getElementById('item-list');
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const itemName = document.getElementById('item-name').value;
+                    const listItem = document.createElement('li');
+                    listItem.textContent = itemName;
+                    itemList.appendChild(listItem);
+                    form.reset();
+                });
+            </script>
+        </section>
+    </main>
+</body>
+</html>
