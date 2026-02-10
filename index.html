@@ -3,58 +3,550 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forex Trading Journal</title>
+    <title>FX_GHOXT - Forex Trading Journal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: Arial, sans-serif; }
-        header { background: #007BFF; color: white; padding: 10px; text-align: center; }
-        main { padding: 20px; }
-        section { margin-bottom: 20px; }
-        .dashboard { display: flex; justify-content: space-between; }
-        .tracker, .compliance { flex: 1; margin: 0 10px; }
-        .rules { background: #f2f2f2; padding: 10px; }
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: #1a2b3c;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        /* Dashboard Container */
+        .dashboard {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 20px;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #1a2b3c;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #e9f1f8;
+        }
+
+        /* Main Content */
+        .main-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 40px;
+        }
+
+        section h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #1a2b3c;
+            border-bottom: 2px solid #e9f1f8;
+            padding-bottom: 10px;
+        }
+
+        /* Form Styles */
+        form {
+            display: grid;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        button.delete {
+            background-color: #dc3545;
+        }
+
+        button.delete:hover {
+            background-color: #c82333;
+        }
+
+        /* Trades Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+
+        /* Chart Containers */
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+
+        /* Progress Indicators */
+        .progress-bar {
+            background-color: #e9f1f8;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 20px;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            background-color: #28a745;
+            height: 100%;
+            transition: width 0.5s;
+        }
+
+        /* Alerts */
+        .alert {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Forex Trading Journal</h1>
+        <h1>FX_GHOXT Forex Trading Journal</h1>
+        <p>Track, Analyze, and Optimize Your Trades</p>
     </header>
-    <main>
-        <section class="dashboard">
-            <h2>Dashboard</h2>
-            <!-- Content for dashboard -->
-        </section>
-        <section class="tracker">
-            <h2>Progress Tracker</h2>
-            <!-- Content for progress tracking (e.g., charts, stats) -->
-        </section>
-        <section class="rules">
-            <h2>Rule Enforcement</h2>
-            <!-- Content for rule enforcement (e.g., list of rules) -->
-        </section>
-        <section class="compliance">
-            <h2>Compliance Monitoring</h2>
-            <!-- Content for compliance monitoring (e.g., alerts, statistics) -->
-        </section>
-        <section class="crud">
-            <h2>CRUD Operations</h2>
-            <form id="crud-form">
-                <input type="text" id="item-name" placeholder="Item Name" required />
-                <button type="submit">Add Item</button>
-            </form>
-            <ul id="item-list"></ul>
-            <script>
-                const form = document.getElementById('crud-form');
-                const itemList = document.getElementById('item-list');
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const itemName = document.getElementById('item-name').value;
-                    const listItem = document.createElement('li');
-                    listItem.textContent = itemName;
-                    itemList.appendChild(listItem);
-                    form.reset();
-                });
-            </script>
-        </section>
-    </main>
+
+    <div class="dashboard">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#add-trade"><i class="fas fa-plus"></i> Add Trade</a></li>
+                <li><a href="#trades-list"><i class="fas fa-list"></i> Trade History</a></li>
+                <li><a href="#analytics"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                <li><a href="#reports"><i class="fas fa-file-alt"></i> Reports</a></li>
+                <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <div class="alert" id="alert-message"></div>
+
+            <section id="dashboard">
+                <h2>Dashboard</h2>
+                <p>Welcome to your trading dashboard. Monitor your performance at a glance.</p>
+                <div>
+                    <h3>Progress Towards Goals</h3>
+                    <p>Monthly Profit Goal: 10%</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="profit-progress" style="width: 0%;"></div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="performance-chart"></canvas>
+                </div>
+            </section>
+
+            <section id="add-trade">
+                <h2>Add New Trade</h2>
+                <form id="trade-form">
+                    <label for="pair">Currency Pair:</label>
+                    <input type="text" id="pair" required placeholder="e.g., EUR/USD">
+
+                    <label for="entry">Entry Price:</label>
+                    <input type="number" id="entry" step="0.0001" required>
+
+                    <label for="exit">Exit Price:</label>
+                    <input type="number" id="exit" step="0.0001" required>
+
+                    <label for="lot">Lot Size:</label>
+                    <input type="number" id="lot" step="0.01" required>
+
+                    <label for="type">Trade Type:</label>
+                    <select id="type" required>
+                        <option value="buy">Buy</option>
+                        <option value="sell">Sell</option>
+                    </select>
+
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" required>
+
+                    <label for="notes">Notes:</label>
+                    <input type="text" id="notes" placeholder="Optional notes">
+
+                    <input type="hidden" id="edit-id">
+
+                    <button type="submit">Save Trade</button>
+                </form>
+            </section>
+
+            <section id="trades-list">
+                <h2>Trade History</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Pair</th>
+                            <th>Entry</th>
+                            <th>Exit</th>
+                            <th>Lot</th>
+                            <th>Type</th>
+                            <th>Date</th>
+                            <th>Profit/Loss</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="trades-table-body"></tbody>
+                </table>
+            </section>
+
+            <section id="analytics">
+                <h2>Analytics</h2>
+                <p>Insights into your trading performance.</p>
+                <div class="chart-container">
+                    <canvas id="win-loss-chart"></canvas>
+                </div>
+                <div>
+                    <h3>Key Metrics</h3>
+                    <ul id="metrics-list"></ul>
+                </div>
+            </section>
+
+            <section id="reports">
+                <h2>Generate Report</h2>
+                <form id="report-form">
+                    <label for="start-date">Start Date:</label>
+                    <input type="date" id="start-date" required>
+
+                    <label for="end-date">End Date:</label>
+                    <input type="date" id="end-date" required>
+
+                    <button type="submit">Generate Report</button>
+                </form>
+                <div id="report-output"></div>
+            </section>
+
+            <section id="settings">
+                <h2>Settings</h2>
+                <p>Configure your trading rules and alerts.</p>
+                <form id="settings-form">
+                    <label for="risk-limit">Max Risk per Trade (%):</label>
+                    <input type="number" id="risk-limit" step="0.1" value="2">
+
+                    <label for="alert-threshold">Alert Profit Threshold (%):</label>
+                    <input type="number" id="alert-threshold" step="0.1" value="5">
+
+                    <button type="submit">Save Settings</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // JSON Storage using LocalStorage
+        const STORAGE_KEY = 'fx_ghoxt_trades';
+        let trades = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        let settings = JSON.parse(localStorage.getItem('fx_ghoxt_settings')) || {
+            riskLimit: 2,
+            alertThreshold: 5
+        };
+
+        // Helper Functions
+        function calculateProfit(entry, exit, lot, type) {
+            const pipValue = 10; // Simplified pip value for example
+            const direction = type === 'buy' ? 1 : -1;
+            const diff = (exit - entry) * direction;
+            return diff * pipValue * lot;
+        }
+
+        function showAlert(message) {
+            const alert = document.getElementById('alert-message');
+            alert.textContent = message;
+            alert.style.display = 'block';
+            setTimeout(() => alert.style.display = 'none', 5000);
+        }
+
+        function updateProgress() {
+            const totalProfit = trades.reduce((sum, trade) => sum + trade.profit, 0);
+            const goal = 1000; // Example monthly goal $1000
+            const progress = Math.min((totalProfit / goal) * 100, 100);
+            document.getElementById('profit-progress').style.width = `${progress}%`;
+        }
+
+        function renderTrades() {
+            const tbody = document.getElementById('trades-table-body');
+            tbody.innerHTML = '';
+            trades.forEach((trade, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${trade.pair}</td>
+                    <td>${trade.entry}</td>
+                    <td>${trade.exit}</td>
+                    <td>${trade.lot}</td>
+                    <td>${trade.type}</td>
+                    <td>${trade.date}</td>
+                    <td>${trade.profit.toFixed(2)}</td>
+                    <td>
+                        <button onclick="editTrade(${index})"><i class="fas fa-edit"></i></button>
+                        <button class="delete" onclick="deleteTrade(${index})"><i class="fas fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function updateCharts() {
+            // Performance Chart (Line Chart)
+            const performanceCtx = document.getElementById('performance-chart').getContext('2d');
+            new Chart(performanceCtx, {
+                type: 'line',
+                data: {
+                    labels: trades.map(t => t.date),
+                    datasets: [{
+                        label: 'Cumulative Profit',
+                        data: trades.map((t, i) => trades.slice(0, i+1).reduce((sum, trade) => sum + trade.profit, 0)),
+                        borderColor: '#28a745',
+                        fill: false
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            // Win/Loss Pie Chart
+            const wins = trades.filter(t => t.profit > 0).length;
+            const losses = trades.length - wins;
+            const winLossCtx = document.getElementById('win-loss-chart').getContext('2d');
+            new Chart(winLossCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Wins', 'Losses'],
+                    datasets: [{
+                        data: [wins, losses],
+                        backgroundColor: ['#28a745', '#dc3545']
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        }
+
+        function updateMetrics() {
+            const totalProfit = trades.reduce((sum, t) => sum + t.profit, 0);
+            const avgProfit = trades.length ? totalProfit / trades.length : 0;
+            const winRate = trades.length ? (trades.filter(t => t.profit > 0).length / trades.length) * 100 : 0;
+            const metricsList = document.getElementById('metrics-list');
+            metricsList.innerHTML = `
+                <li>Total Profit: $${totalProfit.toFixed(2)}</li>
+                <li>Average Profit per Trade: $${avgProfit.toFixed(2)}</li>
+                <li>Win Rate: ${winRate.toFixed(2)}%</li>
+            `;
+        }
+
+        function saveData() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(trades));
+            localStorage.setItem('fx_ghoxt_settings', JSON.stringify(settings));
+        }
+
+        // CRUD Operations
+        function addOrUpdateTrade(event) {
+            event.preventDefault();
+            const id = document.getElementById('edit-id').value;
+            const trade = {
+                pair: document.getElementById('pair').value,
+                entry: parseFloat(document.getElementById('entry').value),
+                exit: parseFloat(document.getElementById('exit').value),
+                lot: parseFloat(document.getElementById('lot').value),
+                type: document.getElementById('type').value,
+                date: document.getElementById('date').value,
+                notes: document.getElementById('notes').value,
+                profit: calculateProfit(
+                    parseFloat(document.getElementById('entry').value),
+                    parseFloat(document.getElementById('exit').value),
+                    parseFloat(document.getElementById('lot').value),
+                    document.getElementById('type').value
+                )
+            };
+
+            // Rule Enforcement: Check risk limit (simplified)
+            const risk = (trade.lot * 100) / 10000; // Example risk calculation
+            if (risk > settings.riskLimit) {
+                showAlert(`Risk exceeds limit of ${settings.riskLimit}%!`);
+                return;
+            }
+
+            if (id) {
+                trades[id] = trade;
+                document.getElementById('edit-id').value = '';
+            } else {
+                trades.push(trade);
+            }
+
+            // Check for alerts
+            if (Math.abs(trade.profit) > (settings.alertThreshold / 100) * 1000) { // Example threshold check
+                showAlert(`Significant trade! Profit/Loss: $${trade.profit.toFixed(2)}`);
+            }
+
+            saveData();
+            renderTrades();
+            updateProgress();
+            updateCharts();
+            updateMetrics();
+            document.getElementById('trade-form').reset();
+        }
+
+        function editTrade(index) {
+            const trade = trades[index];
+            document.getElementById('pair').value = trade.pair;
+            document.getElementById('entry').value = trade.entry;
+            document.getElementById('exit').value = trade.exit;
+            document.getElementById('lot').value = trade.lot;
+            document.getElementById('type').value = trade.type;
+            document.getElementById('date').value = trade.date;
+            document.getElementById('notes').value = trade.notes;
+            document.getElementById('edit-id').value = index;
+            window.scrollTo({ top: document.getElementById('add-trade').offsetTop, behavior: 'smooth' });
+        }
+
+        function deleteTrade(index) {
+            if (confirm('Delete this trade?')) {
+                trades.splice(index, 1);
+                saveData();
+                renderTrades();
+                updateProgress();
+                updateCharts();
+                updateMetrics();
+            }
+        }
+
+        // Report Generation
+        function generateReport(event) {
+            event.preventDefault();
+            const start = new Date(document.getElementById('start-date').value);
+            const end = new Date(document.getElementById('end-date').value);
+            const filtered = trades.filter(t => {
+                const date = new Date(t.date);
+                return date >= start && date <= end;
+            });
+            const totalProfit = filtered.reduce((sum, t) => sum + t.profit, 0);
+            const reportOutput = document.getElementById('report-output');
+            reportOutput.innerHTML = `
+                <h3>Report from ${start.toDateString()} to ${end.toDateString()}</h3>
+                <p>Total Trades: ${filtered.length}</p>
+                <p>Total Profit: $${totalProfit.toFixed(2)}</p>
+                <ul>${filtered.map(t => `<li>${t.pair} - Profit: $${t.profit.toFixed(2)}</li>`).join('')}</ul>
+            `;
+        }
+
+        // Settings Save
+        function saveSettings(event) {
+            event.preventDefault();
+            settings.riskLimit = parseFloat(document.getElementById('risk-limit').value);
+            settings.alertThreshold = parseFloat(document.getElementById('alert-threshold').value);
+            saveData();
+            showAlert('Settings saved!');
+        }
+
+        // Initialization
+        document.getElementById('trade-form').addEventListener('submit', addOrUpdateTrade);
+        document.getElementById('report-form').addEventListener('submit', generateReport);
+        document.getElementById('settings-form').addEventListener('submit', saveSettings);
+
+        renderTrades();
+        updateProgress();
+        updateCharts();
+        updateMetrics();
+
+        // Populate settings form
+        document.getElementById('risk-limit').value = settings.riskLimit;
+        document.getElementById('alert-threshold').value = settings.alertThreshold;
+
+        // Note: Integration with external platforms, algorithmic analysis, and detailed logs would require backend/server-side implementation.
+    </script>
 </body>
 </html>
